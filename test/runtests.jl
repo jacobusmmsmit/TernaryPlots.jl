@@ -28,6 +28,6 @@ using Test
         x_to_plot = first.(points_to_plot)
         y_to_plot = last.(points_to_plot)
 
-        Plots.plot!(p, x_to_plot, y_to_plot, seriestype = :scatter)
+        @test Plots.plot!(p, x_to_plot, y_to_plot, seriestype = :scatter) isa Any
     end
 end
