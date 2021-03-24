@@ -70,7 +70,7 @@ function ternary_plot(;
             for i in grid_minor_range
                 start_point = tern2cart(1 - i, i, 0)
                 end_point = tern2cart(1 - i, 0, i)
-                Plots.plot!(p, [start_point[1], end_point[1]], [start_point[2], end_point[2]], colour=:black, alpha=0.2, linewidth=0.5, linestyle=grid_minor
+                Plots.plot!(p, [start_point[1], end_point[1]], [start_point[2], end_point[2]], colour=:black, alpha=0.2, linewidth=0.5, linestyle=grid_minor_style
                 )
             end
         end
@@ -78,14 +78,14 @@ function ternary_plot(;
             for i in grid_minor_range
                 start_point = tern2cart(0, i, 1 - i)
                 end_point = tern2cart(1 - i, i, 0)
-                Plots.plot!(p, [start_point[1], end_point[1]], [start_point[2], end_point[2]], colour=:black, alpha=0.2, linewidth=0.5, linestyle=grid_minor)
+                Plots.plot!(p, [start_point[1], end_point[1]], [start_point[2], end_point[2]], colour=:black, alpha=0.2, linewidth=0.5, linestyle=grid_minor_style)
             end
         end
         if grid_minor_C
             for i in grid_minor_range
                 start_point = tern2cart(1 - i, 0, i)
                 end_point = tern2cart(0, 1 - i, i)
-                Plots.plot!(p, [start_point[1], end_point[1]], [start_point[2], end_point[2]], colour=:black, alpha=0.2, linewidth=0.5, linestyle=grid_minor)
+                Plots.plot!(p, [start_point[1], end_point[1]], [start_point[2], end_point[2]], colour=:black, alpha=0.2, linewidth=0.5, linestyle=grid_minor_style)
             end
         end
     end
@@ -100,7 +100,7 @@ function ternary_plot(;
                 tick_end_point = start_point .- tick_offset
                 tick_textpos = start_point .+ [0.5 * dist_from_graph * 0.8, -dist_from_graph * 0.8]
                 Plots.annotate!(p, tick_textpos[1], tick_textpos[2], Plots.text("$(round(1 - i, sigdigits=2))", 7, rotation=0))
-                Plots.plot!(p, [start_point[1], end_point[1]], [start_point[2], end_point[2]], colour=:black, alpha=0.5, linewidth=0.5)
+                Plots.plot!(p, [start_point[1], end_point[1]], [start_point[2], end_point[2]], colour=:black, alpha=0.5, linewidth=0.5, linestyle=grid_major_style)
                 Plots.plot!(p, [start_point[1], tick_end_point[1]], [start_point[2], tick_end_point[2]], colour=:black)
             end
         end
@@ -113,7 +113,7 @@ function ternary_plot(;
                 tick_end_point = start_point .- tick_offset
                 tick_textpos = start_point .+ [0.5 * dist_from_graph * 0.8, dist_from_graph * 0.8]
                 Plots.annotate!(p, tick_textpos[1], tick_textpos[2], Plots.text("$i", 7, rotation=0))
-                Plots.plot!(p, [start_point[1], end_point[1]], [start_point[2], end_point[2]], colour=:black, alpha=0.5, linewidth=0.5)
+                Plots.plot!(p, [start_point[1], end_point[1]], [start_point[2], end_point[2]], colour=:black, alpha=0.5, linewidth=0.5, linestyle=grid_major_style)
                 Plots.plot!(p, [start_point[1], tick_end_point[1]], [start_point[2], tick_end_point[2]], colour=:black)
             end
         end
@@ -126,7 +126,7 @@ function ternary_plot(;
                 tick_end_point = start_point .- tick_offset
                 tick_textpos = start_point .+ [-dist_from_graph * 0.8, 0]
                 Plots.annotate!(p, tick_textpos[1], tick_textpos[2], Plots.text("$i", 7, rotation=0))
-                Plots.plot!(p, [start_point[1], end_point[1]], [start_point[2], end_point[2]], colour=:black, alpha=0.5, linewidth=0.5)
+                Plots.plot!(p, [start_point[1], end_point[1]], [start_point[2], end_point[2]], colour=:black, alpha=0.5, linewidth=0.5, linestyle=grid_major_style)
                 Plots.plot!(p, [start_point[1], tick_end_point[1]], [start_point[2], tick_end_point[2]], colour=:black)
             end
         end
