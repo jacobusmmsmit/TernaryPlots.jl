@@ -7,8 +7,7 @@ using DataFrames
 p = ternary_plot(
     title="Distribution of A, B, and C in system",
     labels=(A = "Cheaters (%)", B = "Sitters (%)", C = "Idenfitiers (%)"),
-    grid_minor_range=0.05:0.05:0.95
-)
+    grid_minor_range=0.05:0.05:0.95,)
 
 ## Plotting Points
 npoints = 10
@@ -41,14 +40,15 @@ upsidedown_xs = []
 upsidedown_ys = []
 for row in eachrow(xy)
     x, y = tern2cart(row)
-    if row.x > 0
+    if row.z > 0
         push!(upright_xs, x)
         push!(upright_ys, y)
     end
-    if (row.z > 0 && row.y > 0)
+    if (row.x > 0 && row.y > 0)
         push!(upsidedown_xs, x)
         push!(upsidedown_ys, y)
     end
 end
-Plots.plot!(p, upright_xs .+ 0.005, upright_ys .+ 0.005, seriestype=:scatter, colour=:red, alpha=0.5)
-Plots.plot!(p, upsidedown_xs .- 0.005, upsidedown_ys .- 0.005, seriestype=:scatter, colour=:blue, alpha=0.5)
+Plots.plot!(p, upright_xs, upright_ys .- 0.025, seriestype=:scatter, colour=:red, alpha=0.5)
+Plots.plot!(p, upsidedown_xs, upsidedown_ys .+ 0.025, seriestype=:scatter, colour=:blue, alpha=0.5)
+p
