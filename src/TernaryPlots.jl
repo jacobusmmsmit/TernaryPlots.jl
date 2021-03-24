@@ -1,3 +1,5 @@
+module TernaryPlots
+
 using Plots
 using LinearAlgebra
 using StaticArrays
@@ -175,3 +177,5 @@ x_to_plot = first.(points_to_plot)
 y_to_plot = last.(points_to_plot)
 
 Plots.plot!(p, x_to_plot, y_to_plot, seriestype = :scatter)
+
+end # module
