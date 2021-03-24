@@ -1,0 +1,7 @@
+name = "TernaryPlots"
+uuid = "1f5e811d-5acb-4dfc-9a45-b3a27d369aae"
+authors = ["Martin Smit <jacobusmmsmit@gmail.com> and contributors"]
+version = "0.1.0"
+
+[compat]
+julia = "1.5"
