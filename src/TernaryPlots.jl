@@ -23,16 +23,9 @@ Plots.plot!(p, [0, 1], [0, 0], colour = :black)
 Plots.plot!(p, [0, 1 / 2], [0, √3 / 2], colour = :black)
 Plots.plot!(p, [1, 1 / 2], [0, √3 / 2], colour = :black)
 
-function tern2cart(a, b, c)
-    return (1 / 2 * (2b + c) / (a + b + c), √3 / 2 * (c / (a + b + c)))
-end
+tern2cart(a, b, c) = (1 / 2 * (2b + c) / (a + b + c), √3 / 2 * (c / (a + b + c)))
 
-function tern2cart(array)
-    a = array[1]
-    b = array[2]
-    c = array[3]
-    return (1 / 2 * (2b + c) / (a + b + c), √3 / 2 * (c / (a + b + c)))
-end
+tern2cart(array) = tern2cart(array[1], array[2], array[3])
 
 function cart2tern(x, y)
     c = (2 * y) / √3
@@ -41,14 +34,7 @@ function cart2tern(x, y)
     return (a, b, c)
 end
 
-function cart2tern(array)
-    x = array[1]
-    y = array[2]
-    c = (2 * y) / √3
-    b = x - c / 2
-    a = 1 - b - c
-    return (a, b, c)
-end
+cart2tern(array) = cart2tern(array[1], array[2])
 
 # A-Axis Grid
 for i in 0.0:0.2:1
