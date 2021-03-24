@@ -3,5 +3,10 @@ uuid = "1f5e811d-5acb-4dfc-9a45-b3a27d369aae"
 authors = ["Martin Smit <jacobusmmsmit@gmail.com> and contributors"]
 version = "0.1.0"
 
+[deps]
+LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
+Plots = "91a5bcdd-55d7-5caf-9e0b-520d859cae80"
+StaticArrays = "90137ffa-7385-5640-81b9-e52037218182"
+
 [compat]
 julia = "1.5"
