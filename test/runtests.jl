@@ -1,11 +1,14 @@
-using LinearAlgebra
-using Plots
-using StaticArrays
-using TernaryPlots
 using Test
+using Plots
+using TernaryPlots
 
 @testset "TernaryPlots" begin
     @testset "Example runs" begin
-    ternaryplot(rand(10),rand(10))
+        n = 1000
+        x, y, z = rand(n), rand(n), rand(n)
+        x = x ./ (x .+ y .+ z)
+        y = y ./ (x .+ y .+ z)
+        z = z ./ (x .+ y .+ z)
+        ternaryplot(x, y, z)
     end
 end
