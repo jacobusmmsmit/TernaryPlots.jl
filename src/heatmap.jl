@@ -1,13 +1,12 @@
 using LinearAlgebra
 using Plots
-using StaticArrays
-using TernaryPlots
 using DataFrames
 
+include("baseplot.jl")
 
-function ternary_heatmap(f = (x, y) -> -sin(x) + cos(y); stepsize = 0.05, title="")
+function ternary_heatmap(f=(x, y) -> -sin(x) + cos(y); stepsize=0.05, title="")
     if applicable(f, (0.3, 0.3, 0.1))
-        f = (x, y) -> f(TernaryPlots.cart2tern(x, y)...)
+        f = (x, y) -> f(cart2tern(x, y)...)
     end
 
     p = ternary_plot(
@@ -54,9 +53,9 @@ function ternary_heatmap(f = (x, y) -> -sin(x) + cos(y); stepsize = 0.05, title=
 
     xs = first.(middles)
     ys = last.(middles)
-    z = f.(xs, ys .+ ((√3/2)*stepsize))
+    z = f.(xs, ys .+ ((√3 / 2) * stepsize))
 
-    plot!(shapes, c = plot_color(transpose(z), ), linewidth=0.5, linecolour=plot_color(transpose(z), ))
+    plot!(shapes, c=plot_color(transpose(z), ), linewidth=0.5, linecolour=plot_color(transpose(z), ))
 
     # Construct Upright Triangles
     upright_middles.zlr = upright_middles.z .- stepsize
@@ -72,9 +71,9 @@ function ternary_heatmap(f = (x, y) -> -sin(x) + cos(y); stepsize = 0.05, title=
 
     xs = first.(middles)
     ys = last.(middles)
-    z = f.(xs, ys .- ((√3/2)*stepsize))
+    z = f.(xs, ys .- ((√3 / 2) * stepsize))
 
-    plot!(shapes, c = plot_color(transpose(z), ), linewidth=1, linecolour=plot_color(transpose(z), ))
+    plot!(shapes, c=plot_color(transpose(z), ), linewidth=1, linecolour=plot_color(transpose(z), ))
 
     return ternary_plot(p,
         title=title,
