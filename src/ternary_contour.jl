@@ -1,6 +1,5 @@
 using Plots
 
-include("baseplot.jl")
 
 function ternary_contour!(plot, f;title="", labels = (A = "", B = "", C = ""), stepsize=0.01)
     xs = 0:stepsize:1

@@ -7,7 +7,7 @@ export ternary_plot, tern2cart, cart2tern
 export ternary_heatmap
 export ternary_contour!
 
-# include("baseplot.jl")
+include("baseplot.jl")
 include("heatmap.jl")
 include("ternary_contour.jl")
 

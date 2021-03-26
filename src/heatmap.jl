@@ -2,8 +2,6 @@ using LinearAlgebra
 using Plots
 using DataFrames
 
-include("baseplot.jl")
-
 function ternary_heatmap(f=(x, y) -> -sin(x) + cos(y); stepsize=0.05, title="", labels=(A = "", B = "", C = ""))
     if applicable(f, (0.3, 0.3, 0.1))
         f = (x, y) -> f(cart2tern(x, y)...)
