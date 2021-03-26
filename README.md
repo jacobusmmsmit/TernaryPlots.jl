@@ -42,6 +42,7 @@ This restriction in order will be removed very soon as it is only in place due t
 ## Work in progress:
 * Contour maps (available on `features/contour` branch) using `ternary_contour!` (Note: this is a function that alters a pre-existing plot by adding the contour lines, but again it overwrites the axis labels.
 * Different axis scales (as opposed to just 0 to 1)
+* Ability to put arrows on axis, above axis, or hidden
 * Performance improvements and code cleanup
 * Documentation
 
