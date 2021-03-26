@@ -4,7 +4,7 @@ using DataFrames
 
 include("baseplot.jl")
 
-function ternary_heatmap(f=(x, y) -> -sin(x) + cos(y); stepsize=0.05, title="")
+function ternary_heatmap(f=(x, y) -> -sin(x) + cos(y); stepsize=0.05, title="", labels=(A = "", B = "", C = ""))
     if applicable(f, (0.3, 0.3, 0.1))
         f = (x, y) -> f(cart2tern(x, y)...)
     end
@@ -77,8 +77,7 @@ function ternary_heatmap(f=(x, y) -> -sin(x) + cos(y); stepsize=0.05, title="")
 
     return ternary_plot(p,
         title=title,
-        labels=(A = "Cheaters (%)", B = "Sitters (%)", C = "Idenfitiers (%)"),
-        grid_minor_range=0.05:0.05:0.95,
+        labels=labels,
         )
 end
 

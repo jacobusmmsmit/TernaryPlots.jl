@@ -2,7 +2,7 @@ using Plots
 
 include("baseplot.jl")
 
-function ternary_contour!(plot, f;title="", stepsize=0.01)
+function ternary_contour!(plot, f;title="", labels = (A = "", B = "", C = ""), stepsize=0.01)
     xs = 0:stepsize:1
     ys = 0:stepsize:1
     zs = zeros(length(xs), length(ys))
@@ -14,8 +14,8 @@ function ternary_contour!(plot, f;title="", stepsize=0.01)
 
     Plots.contour!(plot, xs, ys, zs, lw=1, lc=:black, axes=nothing, border=:none, ticks=false, legend=false, colour=:black)
     Plots.plot!(plot, Shape([(-0.5, 0), (-0.5, 1), (1.5, 1), (1.5, -0.5), (-0.5, -0.5), (-0.5, 0), (1, 0), (0.5, √3 / 2), (0, 0)]), colour=:white, linewidth=0, linealpha=0)
-    return ternary_plot(p,
+    return ternary_plot(plot,
         title=title,
-        labels=(A = "", B = "", C = ""),
+        labels=labels,
         )
 end

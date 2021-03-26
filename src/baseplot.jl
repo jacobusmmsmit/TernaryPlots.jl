@@ -20,7 +20,7 @@ function ternary_plot(plot=nothing;
     dist_from_graph::Real=0.04,
     arrow_length::Real=0.4,
     tick_length::Real=0.015,
-    labels=(A = "A (%)", B = "B (%)", C = "C (%)"),
+    labels=(A = "", B = "", C = ""),
     grid_major_range=0.2:0.2:0.8,
     grid_major_style=:solid,
     grid_major=true,
