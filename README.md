@@ -48,4 +48,3 @@ This restriction in order will be removed very soon as it is only in place due t
 
 ## Known issues:
 * Titles and labels being overwritten, `ternary_plot` having the wrong default arguments for labels.
-* Both `ternary_heatmap` and `ternary_contour` include `baseplot.jl` which throws a warning.
