@@ -4,7 +4,7 @@ using Plots
 using LinearAlgebra
 
 export ternary_plot, tern2cart, cart2tern
-export ternary_heatmap, termary_heatmap!
+export ternary_heatmap, ternary_heatmap!
 export ternary_contour, ternary_contour!
 
 include("baseplot.jl")
