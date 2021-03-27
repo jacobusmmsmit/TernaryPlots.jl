@@ -28,17 +28,17 @@ function ternary_plot(plot=nothing;
     grid_major_alpha=1,
     grid_major_linewidth=1,
     grid_major=true,
-    grid_major_B=true,
-    grid_major_A=true,
-    grid_major_C=true,
+    grid_major_right=true,
+    grid_major_bottom=true,
+    grid_major_left=true,
     grid_minor=true,
     grid_minor_ticks=0.1:0.2:0.9,
     grid_minor_style=:solid,
     grid_minor_alpha=0.2,
     grid_minor_linewidth=0.5,
-    grid_minor_A=true,
-    grid_minor_B=true,
-    grid_minor_C=true,
+    grid_minor_bottom=true,
+    grid_minor_right=true,
+    grid_minor_left=true,
     ticks=true,
     tick_labels=true,
     tick_length::Real=0.015,
@@ -87,21 +87,21 @@ function ternary_plot(plot=nothing;
     Plots.plot!(p, [1 / 2, 1], [√3 / 2, 0], colour=:black)
 
     if grid_minor
-        if grid_minor_A
+        if grid_minor_bottom
             for i in grid_minor_ticks
                 start_point = tern2cart(1 - i, i, 0)
                 end_point = tern2cart(1 - i, 0, i)
                 Plots.plot!(p, [start_point[1], end_point[1]], [start_point[2], end_point[2]], colour=:black, alpha=grid_minor_alpha, linewidth=grid_minor_linewidth, linestyle=grid_minor_style)
             end
         end
-        if grid_minor_B
+        if grid_minor_right
             for i in grid_minor_ticks
                 start_point = tern2cart(0, i, 1 - i)
                 end_point = tern2cart(1 - i, i, 0)
                 Plots.plot!(p, [start_point[1], end_point[1]], [start_point[2], end_point[2]], colour=:black, alpha=grid_minor_alpha, linewidth=grid_minor_linewidth, linestyle=grid_minor_style)
             end
         end
-        if grid_minor_C
+        if grid_minor_left
             for i in grid_minor_ticks
                 start_point = tern2cart(1 - i, 0, i)
                 end_point = tern2cart(0, 1 - i, i)
@@ -111,7 +111,7 @@ function ternary_plot(plot=nothing;
     end
 
     if grid_major == true
-        if grid_major_A == true
+        if grid_major_bottom == true
             # Bottom-Axis Grid
             for i in grid_major_ticks
                 start_point = tern2cart(1 - i, i, 0)
@@ -128,7 +128,7 @@ function ternary_plot(plot=nothing;
                 Plots.plot!(p, [start_point[1], end_point[1]], [start_point[2], end_point[2]], colour=:black, alpha=0.5, linewidth=0.5, linestyle=grid_major_style)
             end
         end
-        if grid_major_B == true
+        if grid_major_right == true
             # Right-Axis Grid
             for i in grid_major_ticks
                 end_point = tern2cart(1 - i, i, 0)
@@ -147,7 +147,7 @@ function ternary_plot(plot=nothing;
             end
         end
         # Left-axis Grid
-        if grid_major_C
+        if grid_major_left
             for i in grid_major_ticks
                 start_point = tern2cart(1 - i, 0, i)
                 end_point = tern2cart(0, 1 - i, i)
