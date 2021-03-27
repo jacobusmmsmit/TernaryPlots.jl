@@ -14,7 +14,7 @@ end
 
 cart2tern(array) = cart2tern(array[1], array[2])
 
-function ternary_plot(plot=nothing;
+function ternary_plot!(p;
     title="",
     size=nothing,
     dist_from_graph::Real=0.04,
@@ -23,6 +23,7 @@ function ternary_plot(plot=nothing;
     axis_labels=true,
     label_rotation=60,
     labels=(bottom = "", right = "", left = ""),
+    has_labels=false,
     grid_major_ticks=0.2:0.2:0.8,
     grid_major_style=:solid,
     grid_major_alpha=1,
@@ -55,32 +56,18 @@ function ternary_plot(plot=nothing;
     if draw_arrow
         arrow_pos = ((1 - arrow_length) / 2, 1 - (1 - arrow_length) / 2)
     end
-
-    if plot === nothing
-        p = Plots.plot(
-            xlims=(-0.1, 1.1),
-            ylims=(-√3 / 2 * 4 * dist_from_graph, √3 / 2 * (1 + 2 * dist_from_graph)),
-            xaxis=false,
-            yaxis=false,
-            grid=false,
-            ticks=false,
-            legend=false,
-            title=title,
-            size=size,
-        )
-    else
-        p = Plots.plot!(
-            xlims=(-0.1, 1.1),
-            ylims=(-√3 / 2 * 4 * dist_from_graph, √3 / 2 * (1 + 2 * dist_from_graph)),
-            xaxis=false,
-            yaxis=false,
-            grid=false,
-            ticks=false,
-            legend=false,
-            title=title,
-            size=size,
-        )
-    end
+    
+    p = Plots.plot!(
+        xlims=(-0.1, 1.1),
+        ylims=(-√3 / 2 * 4 * dist_from_graph, √3 / 2 * (1 + 2 * dist_from_graph)),
+        xaxis=false,
+        yaxis=false,
+        grid=false,
+        ticks=false,
+        legend=false,
+        title=title,
+        size=size,
+    )
 
     Plots.plot!(p, [1, 0], [0, 0], colour=:black)
     Plots.plot!(p, [0, 1 / 2], [0, √3 / 2], colour=:black)
@@ -179,7 +166,9 @@ function ternary_plot(plot=nothing;
             textpos = ([0, 0] .+ [0.5, √3 / 2]) ./ 2 .+ (2 .* [-dist_from_graph, dist_from_graph])
         end
         # Label
-        annotate!(p, textpos[1], textpos[2], Plots.text(labels[:left], 10, :dark, rotation=label_rotation))
+        if !has_labels
+            annotate!(p, textpos[1], textpos[2], Plots.text(labels[:left], 10, :dark, rotation=label_rotation))
+        end
 
         # Right-axis
         # Arrow
@@ -192,7 +181,9 @@ function ternary_plot(plot=nothing;
             textpos = ([1, 0] .+ [0.5, √3 / 2]) ./ 2 .+ (2 .* [dist_from_graph, dist_from_graph])
         end
         # Label
-        annotate!(p, textpos[1], textpos[2], Plots.text(labels[:right], 10, :dark, rotation=-label_rotation))
+        if !has_labels
+            annotate!(p, textpos[1], textpos[2], Plots.text(labels[:right], 10, :dark, rotation=-label_rotation))
+        end
 
         # Bottom-axis
         # Arrow
@@ -205,8 +196,19 @@ function ternary_plot(plot=nothing;
             textpos = ([0, 0] .+ [1, 0]) ./ 2 .- (2 .* [0, dist_from_graph])
         end
         # Label
-        annotate!(p, textpos[1], textpos[2], Plots.text(labels[:bottom], 10, :dark, rotation=0))
+        if !has_labels
+            annotate!(p, textpos[1], textpos[2], Plots.text(labels[:bottom], 10, :dark, rotation=0))
+            has_labels = true
+        end
     end
 
     return p
+end
+
+function ternary_plot(p; kwargs...)
+    ternary_plot!(deepcopy(p), kwargs...)
+end
+
+function ternary_plot(kwargs...)
+    ternary_plot!(plot(), kwargs...)
 end

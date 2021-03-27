@@ -9,6 +9,6 @@ export ternary_contour!
 
 include("baseplot.jl")
 include("heatmap.jl")
-include("ternary_contour.jl")
+include("contour.jl")
 
 end # module

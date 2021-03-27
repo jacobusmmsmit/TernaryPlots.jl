@@ -2,22 +2,7 @@ using LinearAlgebra
 using Plots
 using DataFrames
 
-function ternary_heatmap(f=(x, y) -> -sin(x) + cos(y); stepsize=0.05, title="", labels=(bottom = "", right = "", left = ""))
-    if applicable(f, (0.3, 0.3, 0.1))
-        f = (x, y) -> f(cart2tern(x, y)...)
-    end
-
-    p = ternary_plot(
-        title=" ",
-        labels=(bottom = "", right = "", left = ""),
-        # grid_minor_range=0.1:0.2:0.9,
-        ticks=false,
-        tick_labels=false,
-        axis_labels=false,
-        grid_major=false,
-        grid_minor=false)
-
-    ## Heatmap
+function ternary_heatmap!(p, f, stepsize=0.05; kwargs...)
     x = DataFrame(x=0:stepsize:1)
     y = DataFrame(y=0:stepsize:1)
     xy = crossjoin(x, y)
@@ -74,8 +59,13 @@ function ternary_heatmap(f=(x, y) -> -sin(x) + cos(y); stepsize=0.05, title="", 
     plot!(shapes, c=plot_color(transpose(z), ), linewidth=1, linecolour=plot_color(transpose(z), ))
 
     return ternary_plot(p,
-        title=title,
-        labels=labels,
+        kwargs...
         )
 end
 
+ternary_heatmap!(f; kwargs...) = ternary_heatmap!(plot(), f, kwargs...)
+ternary_heatmap(p, f; kwargs...) = ternary_heatmap!(deepcopy(p), f, kwargs...)
+function ternary_heatmap(f; kwargs...)
+    println(kwargs...)
+    ternary_heatmap!(f; kwargs...)
+end
