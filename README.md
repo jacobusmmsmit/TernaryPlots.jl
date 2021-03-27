@@ -48,3 +48,4 @@ This restriction in order will be removed very soon as it is only in place due t
 
 ## Known issues:
 * Titles and labels being overwritten, `ternary_plot` having the wrong default arguments for labels.
+* Rotation of labels is not consistent as you resize the graph, as such one needs to fiddle with the size parameter in order to get the angles correct, or specify them yourself.
