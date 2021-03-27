@@ -2,12 +2,10 @@ using TernaryPlots
 
 f(x,y) = ((2 * x) - 1)^4 - ((2 * x) - 1)^2 + y^2
 
-p = ternary_heatmap(f, stepsize=0.02)
-p2 = ternary_plot(draw_arrow=true, labels=(bottom = "btm", right = "rght", left = "lft"))
-p3 = ternary_plot(draw_arrow=true, labels=(bottom = "btm", right = "rght", left = "lft"))
+p2 = ternary_heatmap(f, 0.02,
+    title="Example Ternary Plot",
+    labels=(bottom = "Bottom Axis", left = "Left Axis", right = "Right Axis"))
 
-ternary_contour!(p, f)
-ternary_contour!(p2, f)
-
-p2
-
+p = ternary_plot()
+ternary_heatmap!(p, f, 0.02; draw_arrows=false, tick_labels=false)
+ternary_contour!(p, f, 0.01)

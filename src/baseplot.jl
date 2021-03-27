@@ -14,11 +14,11 @@ end
 
 cart2tern(array) = cart2tern(array[1], array[2])
 
-function ternary_plot!(p;
+function ternary_plot!(p::Plots.Plot;
     title="",
     size=nothing,
     dist_from_graph::Real=0.04,
-    draw_arrow=true,
+    draw_arrows=true,
     arrow_length::Real=0.4,
     axis_labels=true,
     label_rotation=60,
@@ -53,7 +53,7 @@ function ternary_plot!(p;
         end
     end
 
-    if draw_arrow
+    if draw_arrows
         arrow_pos = ((1 - arrow_length) / 2, 1 - (1 - arrow_length) / 2)
     end
     
@@ -157,7 +157,7 @@ function ternary_plot!(p;
     if axis_labels
         # Left-axis
         # Arrow
-        if draw_arrow
+        if draw_arrows
             arrow_start = collect(tern2cart(arrow_pos[2], 0, arrow_pos[1])) .+ (2 .* [-dist_from_graph, dist_from_graph])
             arrow_end = collect(tern2cart(arrow_pos[1], 0, arrow_pos[2])) .+ (2 .* [-dist_from_graph, dist_from_graph])
             textpos = ((arrow_start .+ arrow_end) ./ 2) .+ [-dist_from_graph, dist_from_graph]
@@ -172,7 +172,7 @@ function ternary_plot!(p;
 
         # Right-axis
         # Arrow
-        if draw_arrow
+        if draw_arrows
             arrow_start = collect(tern2cart(0, arrow_pos[1], arrow_pos[2])) .+ (2 .* [dist_from_graph, dist_from_graph])
             arrow_end = collect(tern2cart(0, arrow_pos[2], arrow_pos[1])) .+ (2 .* [dist_from_graph, dist_from_graph])
             textpos = ((arrow_start .+ arrow_end) ./ 2) .+ [dist_from_graph, dist_from_graph]
@@ -187,7 +187,7 @@ function ternary_plot!(p;
 
         # Bottom-axis
         # Arrow
-        if draw_arrow
+        if draw_arrows
             arrow_start = collect(tern2cart(arrow_pos[1], arrow_pos[2], 0)) .+ (2 .* [0, -dist_from_graph])
             arrow_end = collect(tern2cart(arrow_pos[2], arrow_pos[1], 0)) .+ (2 .* [0, -dist_from_graph])
             textpos = ((arrow_start .+ arrow_end) ./ 2) .+ [0, -dist_from_graph]
@@ -205,10 +205,5 @@ function ternary_plot!(p;
     return p
 end
 
-function ternary_plot(p; kwargs...)
-    ternary_plot!(deepcopy(p), kwargs...)
-end
-
-function ternary_plot(kwargs...)
-    ternary_plot!(plot(), kwargs...)
-end
+ternary_plot(p::Plots.Plot; kwargs...) = ternary_plot!(deepcopy(p); kwargs...)
+ternary_plot(; kwargs...) = ternary_plot!(plot(); kwargs...)

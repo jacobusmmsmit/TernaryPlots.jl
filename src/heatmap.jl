@@ -2,7 +2,7 @@ using LinearAlgebra
 using Plots
 using DataFrames
 
-function ternary_heatmap!(p, f, stepsize=0.05; kwargs...)
+function ternary_heatmap!(p::Plots.Plot, f::Function, stepsize::Real; kwargs...)
     x = DataFrame(x=0:stepsize:1)
     y = DataFrame(y=0:stepsize:1)
     xy = crossjoin(x, y)
@@ -58,14 +58,11 @@ function ternary_heatmap!(p, f, stepsize=0.05; kwargs...)
 
     plot!(shapes, c=plot_color(transpose(z), ), linewidth=1, linecolour=plot_color(transpose(z), ))
 
-    return ternary_plot(p,
+    return ternary_plot(p;
         kwargs...
         )
 end
 
-ternary_heatmap!(f; kwargs...) = ternary_heatmap!(plot(), f, kwargs...)
-ternary_heatmap(p, f; kwargs...) = ternary_heatmap!(deepcopy(p), f, kwargs...)
-function ternary_heatmap(f; kwargs...)
-    println(kwargs...)
-    ternary_heatmap!(f; kwargs...)
-end
+ternary_heatmap!(f::Function, stepsize::Real; kwargs...) = ternary_heatmap!(plot(), f, stepsize; kwargs...)
+ternary_heatmap(p::Plots.Plot, f::Function, stepsize::Real; kwargs...) = ternary_heatmap!(deepcopy(p), f, stepsize; kwargs...)
+ternary_heatmap(f::Function, stepsize::Real; kwargs...) = ternary_heatmap!(f, stepsize; kwargs...)
