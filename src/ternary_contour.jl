@@ -1,7 +1,7 @@
 using Plots
 
 
-function ternary_contour!(plot, f;title="", labels = (A = "", B = "", C = ""), stepsize=0.01)
+function ternary_contour!(plot, f;title="", labels=(bottom = "", right = "", left = ""), stepsize=0.01)
     xs = 0:stepsize:1
     ys = 0:stepsize:1
     zs = zeros(length(xs), length(ys))

@@ -15,13 +15,14 @@ end
 cart2tern(array) = cart2tern(array[1], array[2])
 
 function ternary_plot(plot=nothing;
-    draw_arrow=false,
     title="",
     size=nothing,
     dist_from_graph::Real=0.04,
+    draw_arrow=true,
     arrow_length::Real=0.4,
-    tick_length::Real=0.015,
-    labels=(A = "", B = "", C = ""),
+    axis_labels=true,
+    label_rotation=60,
+    labels=(bottom = "", right = "", left = ""),
     grid_major_ticks=0.2:0.2:0.8,
     grid_major_style=:solid,
     grid_major_alpha=1,
@@ -40,7 +41,7 @@ function ternary_plot(plot=nothing;
     grid_minor_C=true,
     ticks=true,
     tick_labels=true,
-    axis_labels=true
+    tick_length::Real=0.015,
     )
 
     if size === nothing
@@ -51,7 +52,10 @@ function ternary_plot(plot=nothing;
         end
     end
 
-    arrow_pos = (1 - arrow_length) / 2, 1 - (1 - arrow_length) / 2
+    if draw_arrow
+        arrow_pos = ((1 - arrow_length) / 2, 1 - (1 - arrow_length) / 2)
+    end
+
     if plot === nothing
         p = Plots.plot(
             xlims=(-0.1, 1.1),
@@ -78,9 +82,9 @@ function ternary_plot(plot=nothing;
         )
     end
 
-    Plots.plot!(p, [1, 0], [0, 0], colour=:black, arrow=draw_arrow)
-    Plots.plot!(p, [0, 1 / 2], [0, √3 / 2], colour=:black, arrow=draw_arrow)
-    Plots.plot!(p, [1 / 2, 1], [√3 / 2, 0], colour=:black, arrow=draw_arrow)
+    Plots.plot!(p, [1, 0], [0, 0], colour=:black)
+    Plots.plot!(p, [0, 1 / 2], [0, √3 / 2], colour=:black)
+    Plots.plot!(p, [1 / 2, 1], [√3 / 2, 0], colour=:black)
 
     if grid_minor
         if grid_minor_A
@@ -108,7 +112,7 @@ function ternary_plot(plot=nothing;
 
     if grid_major == true
         if grid_major_A == true
-            # A-Axis Grid
+            # Bottom-Axis Grid
             for i in grid_major_ticks
                 start_point = tern2cart(1 - i, i, 0)
                 end_point = tern2cart(1 - i, 0, i)
@@ -125,7 +129,7 @@ function ternary_plot(plot=nothing;
             end
         end
         if grid_major_B == true
-            # B-Axis Grid
+            # Right-Axis Grid
             for i in grid_major_ticks
                 end_point = tern2cart(1 - i, i, 0)
                 start_point = tern2cart(0, i, 1 - i)
@@ -142,7 +146,7 @@ function ternary_plot(plot=nothing;
                 
             end
         end
-        # C-Axis Grid
+        # Left-axis Grid
         if grid_major_C
             for i in grid_major_ticks
                 start_point = tern2cart(1 - i, 0, i)
@@ -164,34 +168,44 @@ function ternary_plot(plot=nothing;
 
     ## Axis labels
     if axis_labels
-        # C axis
-        pos =
-            collect(tern2cart(arrow_pos[2], 0, arrow_pos[1])) .+
-            (2 .* [-dist_from_graph, dist_from_graph])
-        pos2 =
-            collect(tern2cart(arrow_pos[1], 0, arrow_pos[2])) .+
-            (2 .* [-dist_from_graph, dist_from_graph])
-        textpos = ((pos .+ pos2) ./ 2) .+ [-dist_from_graph, dist_from_graph]
-        plot!(p, [pos[1], pos2[1]], [pos[2], pos2[2]], arrow=true, colour=:black)
-        annotate!(p, textpos[1], textpos[2], Plots.text(labels[:C], 10, :dark, rotation=60))
+        # Left-axis
+        # Arrow
+        if draw_arrow
+            arrow_start = collect(tern2cart(arrow_pos[2], 0, arrow_pos[1])) .+ (2 .* [-dist_from_graph, dist_from_graph])
+            arrow_end = collect(tern2cart(arrow_pos[1], 0, arrow_pos[2])) .+ (2 .* [-dist_from_graph, dist_from_graph])
+            textpos = ((arrow_start .+ arrow_end) ./ 2) .+ [-dist_from_graph, dist_from_graph]
+            plot!(p, [arrow_start[1], arrow_end[1]], [arrow_start[2], arrow_end[2]], arrow=true, colour=:black)
+        else
+            textpos = ([0, 0] .+ [0.5, √3 / 2]) ./ 2 .+ (2 .* [-dist_from_graph, dist_from_graph])
+        end
+        # Label
+        annotate!(p, textpos[1], textpos[2], Plots.text(labels[:left], 10, :dark, rotation=label_rotation))
 
-        # B axis
-        pos =
-            collect(tern2cart(0, arrow_pos[1], arrow_pos[2])) .+
-            (2 .* [dist_from_graph, dist_from_graph])
-        pos2 =
-            collect(tern2cart(0, arrow_pos[2], arrow_pos[1])) .+
-            (2 .* [dist_from_graph, dist_from_graph])
-        textpos = ((pos .+ pos2) ./ 2) .+ [dist_from_graph, dist_from_graph]
-        plot!(p, [pos[1], pos2[1]], [pos[2], pos2[2]], arrow=true, colour=:black)
-        annotate!(p, textpos[1], textpos[2], Plots.text(labels[:B], 10, :dark, rotation=-60))
+        # Right-axis
+        # Arrow
+        if draw_arrow
+            arrow_start = collect(tern2cart(0, arrow_pos[1], arrow_pos[2])) .+ (2 .* [dist_from_graph, dist_from_graph])
+            arrow_end = collect(tern2cart(0, arrow_pos[2], arrow_pos[1])) .+ (2 .* [dist_from_graph, dist_from_graph])
+            textpos = ((arrow_start .+ arrow_end) ./ 2) .+ [dist_from_graph, dist_from_graph]
+            plot!(p, [arrow_start[1], arrow_end[1]], [arrow_start[2], arrow_end[2]], arrow=true, colour=:black)
+        else
+            textpos = ([1, 0] .+ [0.5, √3 / 2]) ./ 2 .+ (2 .* [dist_from_graph, dist_from_graph])
+        end
+        # Label
+        annotate!(p, textpos[1], textpos[2], Plots.text(labels[:right], 10, :dark, rotation=-label_rotation))
 
-        # A axis
-        pos = collect(tern2cart(arrow_pos[1], arrow_pos[2], 0)) .+ (2 .* [0, -dist_from_graph])
-        pos2 = collect(tern2cart(arrow_pos[2], arrow_pos[1], 0)) .+ (2 .* [0, -dist_from_graph])
-        textpos = ((pos .+ pos2) ./ 2) .+ [0, -dist_from_graph]
-        plot!(p, [pos[1], pos2[1]], [pos[2], pos2[2]], arrow=true, colour=:black)
-        annotate!(p, textpos[1], textpos[2], Plots.text(labels[:A], 10, :dark, rotation=0))
+        # Bottom-axis
+        # Arrow
+        if draw_arrow
+            arrow_start = collect(tern2cart(arrow_pos[1], arrow_pos[2], 0)) .+ (2 .* [0, -dist_from_graph])
+            arrow_end = collect(tern2cart(arrow_pos[2], arrow_pos[1], 0)) .+ (2 .* [0, -dist_from_graph])
+            textpos = ((arrow_start .+ arrow_end) ./ 2) .+ [0, -dist_from_graph]
+            plot!(p, [arrow_start[1], arrow_end[1]], [arrow_start[2], arrow_end[2]], arrow=true, colour=:black)
+        else
+            textpos = ([0, 0] .+ [1, 0]) ./ 2 .- (2 .* [0, dist_from_graph])
+        end
+        # Label
+        annotate!(p, textpos[1], textpos[2], Plots.text(labels[:bottom], 10, :dark, rotation=0))
     end
 
     return p

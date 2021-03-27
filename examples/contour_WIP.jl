@@ -12,7 +12,7 @@ f(x,y) = (2 * x - 1)^(4) - (2 * x - 1)^(2) + y^(2)
 
 p = ternary_plot(
     title=" ",
-    labels=(A = "", B = "", C = ""),
+    labels=(bottom = "", right = "", left = ""),
     ticks=false,
     tick_labels=false,
     axis_labels=false,

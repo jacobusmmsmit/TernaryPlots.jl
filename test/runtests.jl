@@ -8,7 +8,7 @@ using Test
     @testset "Example runs" begin
         p = ternary_plot(
             title = "Distribution of A, B, and C in system",
-            labels = (A = "Cheaters (%)", B = "Sitters (%)", C = "Idenfitiers (%)"),
+            labels = (bottom = "Cheaters (%)", right = "Sitters (%)", left = "Idenfitiers (%)"),
         )
 
         ## Plotting Points

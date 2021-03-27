@@ -34,8 +34,8 @@ f(x,y) = (2 * x - 1)^(4) - (2 * x - 1)^(2) + y^(2)
 p = ternary_heatmap(f) # Construct a heatmap, don't specify the title or labels
 p2 = ternary_plot() # Construct a blank ternary plot, don't specify the title or labels
 
-ternary_contour!(p, f, title="Title", labels=(A="Bottom", B="Right", C="Left")) # Add the contours to the existing heatmap (note the ! in the name of the function)
-ternary_contour!(p2, f, title="Title", labels=(A="Bottom", B="Right", C="Left")) # # Add the contours to the blank ternary plot
+ternary_contour!(p, f, title="Title", labels=(bottom="Bottom", right="Right", left="Left")) # Add the contours to the existing heatmap (note the ! in the name of the function)
+ternary_contour!(p2, f, title="Title", labels=(bottom="Bottom", right="Right", left="Left")) # # Add the contours to the blank ternary plot
 ```
 This restriction in order will be removed very soon as it is only in place due to the early nature of the package.
 
@@ -47,4 +47,4 @@ This restriction in order will be removed very soon as it is only in place due t
 * Documentation
 
 ## Known issues:
-* Titles and labels being overwritten, `ternary_plot` having the wrong default arguments for labels.
+* Titles and labels being overwritten.

@@ -2,14 +2,14 @@ using LinearAlgebra
 using Plots
 using DataFrames
 
-function ternary_heatmap(f=(x, y) -> -sin(x) + cos(y); stepsize=0.05, title="", labels=(A = "", B = "", C = ""))
+function ternary_heatmap(f=(x, y) -> -sin(x) + cos(y); stepsize=0.05, title="", labels=(bottom = "", right = "", left = ""))
     if applicable(f, (0.3, 0.3, 0.1))
         f = (x, y) -> f(cart2tern(x, y)...)
     end
 
     p = ternary_plot(
         title=" ",
-        labels=(A = "", B = "", C = ""),
+        labels=(bottom = "", right = "", left = ""),
         # grid_minor_range=0.1:0.2:0.9,
         ticks=false,
         tick_labels=false,
