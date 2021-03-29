@@ -49,3 +49,9 @@ This restriction in order will be removed very soon as it is only in place due t
 ## Known issues:
 * Titles and labels being overwritten, `ternary_plot` having the wrong default arguments for labels.
 * Rotation of labels is not consistent as you resize the graph, as such one needs to fiddle with the size parameter in order to get the angles correct, or specify them yourself.
+
+## Contributions:
+* [@jacobusmmsmit](https://github.com/jacobusmmsmit) - Author and maintainer
+* [@Hasnep](https://github.com/Hasnep) - Maintainer
+* [@brenhinkeller](https://github.com/brenhinkeller) - Major contributions for ternary histograms
+* [@daschw](https://github.com/daschw) - Major contributions to recipe implementation
