@@ -4,6 +4,7 @@ using TernaryPlots
 using CSV
 using DataFrames
 
+
 #Downloading Global whole-rock geochemical database compilation from https://zenodo.org/record/3359791/files/major.csv?download=1
 path = "https://zenodo.org/record/3359791/files/major.csv?download=1"
 df = CSV.read(download(path), DataFrame)
