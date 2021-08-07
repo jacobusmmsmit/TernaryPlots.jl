@@ -1,7 +1,7 @@
 # TernaryPlots.jl
 Ternary/simplex plotting recipe/addon for Plots.jl
 
-Please note: this package is currently in _very early development stage_, this README is currently up to date as of 26/03/2021, but may not be in the coming days as problems are fixed and features are added. Please feel free to contact me via email with any questions jacobusmmsmit a gmail d com or open an issue on this repository.
+Please note: this package is currently in _very early development stage_, this README is currently up to date as of 07/08/2021, but may not be in the coming days as problems are fixed and features are added. Please feel free to contact me via email with any questions jacobusmmsmit a gmail d com or open an issue on this repository.
 
 ## Installation:
 In the REPL you can paste this code to install the package:
