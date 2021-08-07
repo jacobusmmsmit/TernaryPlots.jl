@@ -65,7 +65,7 @@
     # grids
     if get(plotattributes, :gridmajor, true)
         if get(plotattributes, :xgrid, true)
-            ticks = get(plotattributes, :xticks, 0.2:0.2:0.8)
+            ticks = get(plotattributes, :xticks, 0:0.2:1)
             src = tern2cart.(1 .- ticks, ticks, 0)
             dst = tern2cart.(1 .- ticks, 0, ticks)
             sa = get(plotattributes, :xgridalpha, 0.5)
@@ -86,7 +86,7 @@
         end
 
         if get(plotattributes, :ygrid, true)
-            ticks = get(plotattributes, :yticks, 0.2:0.2:0.8)
+            ticks = get(plotattributes, :yticks, 0:0.2:1)
             src = tern2cart.(1 .- ticks, ticks, 0)
             dst = tern2cart.(0, ticks, 1 .- ticks)
             sa = get(plotattributes, :ygridalpha, 0.5)
@@ -106,7 +106,7 @@
         end
 
         if get(plotattributes, :zgrid, true)
-            ticks = get(plotattributes, :zticks, 0.2:0.2:0.8)
+            ticks = get(plotattributes, :zticks, 0:0.2:1)
             src = tern2cart.(1 .- ticks, 0, ticks)
             dst = tern2cart.(0, 1 .- ticks, ticks)
             sa = get(plotattributes, :zgridalpha, 0.5)
@@ -134,9 +134,9 @@
         else
             tickmult = 1
         end
-        xticks = get(plotattributes, :xticks, 0.2:0.2:0.8)
-        yticks = get(plotattributes, :yticks, 0.2:0.2:0.8)
-        zticks = get(plotattributes, :zticks, 0.2:0.2:0.8)
+        xticks = get(plotattributes, :xticks, 0:0.2:1)
+        yticks = get(plotattributes, :yticks, 0:0.2:1)
+        zticks = get(plotattributes, :zticks, 0:0.2:1)
 
         function text_structure(axis)
             if axis == "x"
