@@ -39,5 +39,6 @@ This package provides a function (more precisely: a recipe) to construct ternary
 ## Contributions:
 * [@jacobusmmsmit](https://github.com/jacobusmmsmit) - Author and maintainer
 * [@Hasnep](https://github.com/Hasnep) - Maintainer
-<!-- * [@brenhinkeller](https://github.com/brenhinkeller) - Major contributions for ternary histograms -->
 * [@daschw](https://github.com/daschw) - Major contributions to recipe implementation
+<!-- * [@brenhinkeller](https://github.com/brenhinkeller) - Major contributions for ternary histograms -->
+
