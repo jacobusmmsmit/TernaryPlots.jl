@@ -3,10 +3,10 @@ name: FormattingChecker
 on:
   push:
     paths:
-      - "*.jl"
+      - "**.jl"
   pull_request:
     paths:
-      - "*.jl"
+      - "**.jl"
 
 jobs:
   build:
