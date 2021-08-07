@@ -26,13 +26,6 @@ ternary_axes(
     xguide="SiO2",
     yguide="Al2O3",
     zguide="MgO",
-    gridalpha=0.5,
-    xgridlinewidth=1,
-    ygridlinewidth=1,
-    zgridlinewidth=1,
-    xgridstyle=:dash,
-    ygridstyle=:dash,
-    zgridstyle=:dash,
 )
 
 p = scatter!(a[:,1],a[:,2], legend=false)
