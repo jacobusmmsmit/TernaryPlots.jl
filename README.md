@@ -70,6 +70,7 @@ p = scatter!(a[:,1],a[:,2], legend=false)
 
 ## Known issues:
 * Rotation of labels is not consistent as you resize the graph, as such one needs to fiddle with the size parameter in order to get the angles correct, or specify them yourself.
+* The figures are off-centered.
 
 ## Contributions:
 * [@jacobusmmsmit](https://github.com/jacobusmmsmit) - Author and maintainer
