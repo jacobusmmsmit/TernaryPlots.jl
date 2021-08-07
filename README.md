@@ -49,13 +49,6 @@ ternary_axes(
     xguide="SiO2",
     yguide="Al2O3",
     zguide="MgO",
-    gridalpha=0.5,
-    xgridlinewidth=1,
-    ygridlinewidth=1,
-    zgridlinewidth=1,
-    xgridstyle=:dash,
-    ygridstyle=:dash,
-    zgridstyle=:dash,
 )
 
 p = scatter!(a[:,1],a[:,2], legend=false)
@@ -77,6 +70,7 @@ p = scatter!(a[:,1],a[:,2], legend=false)
 
 ## Known issues:
 * Rotation of labels is not consistent as you resize the graph, as such one needs to fiddle with the size parameter in order to get the angles correct, or specify them yourself.
+* The figures are off-centered.
 
 ## Contributions:
 * [@jacobusmmsmit](https://github.com/jacobusmmsmit) - Author and maintainer
