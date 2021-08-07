@@ -60,7 +60,7 @@ ternary_axes(
 
 p = scatter!(a[:,1],a[:,2], legend=false)
 ```
-![](https://github.com/jacobusmmsmit/TernaryPlots.jl/blob/master/outputs/example_plot.pdf?raw=true)
+![](https://github.com/jacobusmmsmit/TernaryPlots.jl/blob/master/outputs/example_plot.png?raw=true)
 
 
 ## Work in progress:
