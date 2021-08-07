@@ -18,7 +18,7 @@ function calculate_guide_pos(axis, arrow_pos, dist_from_graph)
         throw(ArgumentError("Invalid axis (\"x, y, z\""))
     end
     arrow_src = collect(tern2cart(base_src_tern)) .+ 2 .* oriented_dfg
-    arrow_dst = collect(tern2cart(base_dst_tern)) .+  2 .* oriented_dfg
+    arrow_dst = collect(tern2cart(base_dst_tern)) .+ 2 .* oriented_dfg
     textpos = ((arrow_src .+ arrow_dst) ./ 2) .+ oriented_dfg
     return (arrow_src, arrow_dst, textpos)
 end
@@ -58,6 +58,6 @@ function calculate_ticks(axis, ticks, tick_length, tickmult)
         tick_startpoints[i] = start_point
         tick_endpoints[i] = start_point .+ tickmult .* tick_offset
     end
-    
+
     return tick_startpoints, tick_endpoints
 end
