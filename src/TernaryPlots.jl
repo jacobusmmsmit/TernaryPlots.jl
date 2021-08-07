@@ -1,14 +1,15 @@
 module TernaryPlots
 
-using Plots
-using LinearAlgebra
+export ternary_axes, ternary_axes!
+export tern2cart, cart2tern
 
-export ternary_plot, tern2cart, cart2tern
-export ternary_heatmap
-export ternary_contour!
+using RecipesBase
+using Plots: text
+using LinearAlgebra: normalize
 
-include("baseplot.jl")
-include("heatmap.jl")
-include("ternary_contour.jl")
+include("user_helpers.jl")
+include("recipe_helpers.jl")
+include("ternary_axes.jl")
 
 end # module
+
