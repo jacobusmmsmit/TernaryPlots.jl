@@ -57,7 +57,7 @@ p = scatter!(a[:,1],a[:,2], legend=false)
 
 
 ## Work in progress:
-* Different axis scales (as opposed to just 0 to 1)
+* Different axis scales (as opposed to just 0 to 1) and ability to update ticks after definition.
 * Performance improvements and code cleanup.
 * Documentation.
 * Plotting of ternary heatmaps by overloading `heatmap` on `Ternary_Axes`. Users will be able to define a function of cartesian co-ordinates or ternary co-ordinates:
