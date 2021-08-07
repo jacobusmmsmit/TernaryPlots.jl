@@ -28,7 +28,7 @@ using CSV
 using DataFrames
 
 
-#Downloading Global whole-rock geochemical database compilation from https://zenodo.org/record/3359791/files/major.csv?download=1
+#Downloading Global whole-rock geochemical database compilation from zenodo.org
 path = "https://zenodo.org/record/3359791/files/major.csv?download=1"
 df = CSV.read(download(path), DataFrame)
 df = coalesce.(df,0)
@@ -60,7 +60,7 @@ ternary_axes(
 
 p = scatter!(a[:,1],a[:,2], legend=false)
 ```
-![](https://github.com/jacobusmmsmit/TernaryPlots.jl/blob/master/outputs/example_plot.pdf?raw=true)
+![](https://github.com/jacobusmmsmit/TernaryPlots.jl/blob/master/outputs/example_plot.png?raw=true)
 
 
 ## Work in progress:
