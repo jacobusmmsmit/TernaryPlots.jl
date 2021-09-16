@@ -7,13 +7,13 @@ function calculate_guide_pos(axis, arrow_pos, dist_from_graph)
         base_dst_tern = (arrow_pos[2], arrow_pos[1], 0)
         oriented_dfg = [0, -1] .* dist_from_graph
     elseif axis == "y"
-        base_src_tern = (arrow_pos[2], 0, arrow_pos[1])
-        base_dst_tern = (arrow_pos[1], 0, arrow_pos[2])
-        oriented_dfg = [-1, 1] .* dist_from_graph
-    elseif axis == "z"
         base_src_tern = (0, arrow_pos[1], arrow_pos[2])
         base_dst_tern = (0, arrow_pos[2], arrow_pos[1])
         oriented_dfg = [1, 1] .* dist_from_graph
+    elseif axis == "z"
+        base_src_tern = (arrow_pos[2], 0, arrow_pos[1])
+        base_dst_tern = (arrow_pos[1], 0, arrow_pos[2])
+        oriented_dfg = [-1, 1] .* dist_from_graph
     else
         throw(ArgumentError("Invalid axis (\"x, y, z\""))
     end

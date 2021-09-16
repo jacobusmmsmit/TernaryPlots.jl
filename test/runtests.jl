@@ -3,10 +3,11 @@ using Plots
 using TernaryPlots
 using CSV
 using DataFrames
+using Downloads
 
 #Downloading Global whole-rock geochemical database compilation from https://zenodo.org/record/3359791/files/major.csv?download=1
 path = "https://zenodo.org/record/3359791/files/major.csv?download=1"
-df = CSV.read(download(path), DataFrame)
+df = CSV.read(Downloads.download(path), DataFrame)
 df = coalesce.(df, 0)
 filter!(row -> row[:sio2] >= 0, df)
 filter!(row -> row[:al2o3] >= 0, df)
