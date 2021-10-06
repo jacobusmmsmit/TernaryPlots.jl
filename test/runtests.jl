@@ -1,26 +1,9 @@
-push!(LOAD_PATH, "src")
 using Plots
 using TernaryPlots
-using CSV
-using DataFrames
-using Downloads
 
-#Downloading Global whole-rock geochemical database compilation from https://zenodo.org/record/3359791/files/major.csv?download=1
-path = "https://zenodo.org/record/3359791/files/major.csv?download=1"
-df = CSV.read(Downloads.download(path), DataFrame)
-df = coalesce.(df, 0)
-filter!(row -> row[:sio2] >= 0, df)
-filter!(row -> row[:al2o3] >= 0, df)
-filter!(row -> row[:mgo] >= 0, df)
-filter!(row -> (row[:sio2] .+ row[:al2o3] .+ row[:mgo]) >= 0.9, df)
-filter!(row -> (row[:sio2] .+ row[:al2o3] .+ row[:mgo]) <= 1.1, df)
-compos = [df.sio2 df.al2o3 df.mgo]
-a = [zeros(eltype(compos), size(compos, 1)) zeros(eltype(compos), size(compos, 1))]
+# Generate test data
+test_data = rand(100, 3) |> eachrow .|> r -> r ./ sum(r) |> tern2cart
 
-for i in 1:size(compos, 1)
-    a[i, :] = collect(tern2cart(compos[i, :]))'
-end
-
-ternary_axes(title = "Rocks", xguide = "SiO2", yguide = "Al2O3", zguide = "MgO")
-
-p = scatter!(a[:, 1], a[:, 2], legend = false)
+# Plot the data
+p = ternary_axes(title = "Rocks", xguide = "SiO2", yguide = "Al2O3", zguide = "MgO")
+scatter!(p, getindex.(test_data, 1), getindex.(test_data, 2), legend = false)
