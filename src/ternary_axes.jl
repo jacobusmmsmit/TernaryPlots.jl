@@ -10,18 +10,14 @@
     tick_length = get(plotattributes, :tick_length, 0.015)
 
     # calculate where arrows and labels should be
-    x_arrow_src, x_arrow_dst, x_guide_pos =
-        calculate_guide_pos("x", arrow_pos, dist_from_graph)
-    y_arrow_src, y_arrow_dst, y_guide_pos =
-        calculate_guide_pos("y", arrow_pos, dist_from_graph)
-    z_arrow_src, z_arrow_dst, z_guide_pos =
-        calculate_guide_pos("z", arrow_pos, dist_from_graph)
+    x_arrow_src, x_arrow_dst, x_guide_pos = calculate_guide_pos("x", arrow_pos, dist_from_graph)
+    y_arrow_src, y_arrow_dst, y_guide_pos = calculate_guide_pos("y", arrow_pos, dist_from_graph)
+    z_arrow_src, z_arrow_dst, z_guide_pos = calculate_guide_pos("z", arrow_pos, dist_from_graph)
 
     x_arrow_xs, x_arrow_ys = coords_to_axes(x_arrow_src, x_arrow_dst)
     y_arrow_xs, y_arrow_ys = coords_to_axes(y_arrow_src, y_arrow_dst)
     z_arrow_xs, z_arrow_ys = coords_to_axes(z_arrow_src, z_arrow_dst)
-    arrow_axes_xs_yes =
-        [(x_arrow_xs, x_arrow_ys), (y_arrow_xs, y_arrow_ys), (z_arrow_xs, z_arrow_ys)]
+    arrow_axes_xs_yes = [(x_arrow_xs, x_arrow_ys), (y_arrow_xs, y_arrow_ys), (z_arrow_xs, z_arrow_ys)]
 
     if !get(plotattributes, :axis_arrows, true)
         x_guide_pos = (x_arrow_src .+ x_arrow_dst) ./ 2
@@ -171,8 +167,7 @@
             # Better to calculate the offset once by calculating the tick_structure once
             # then just adding the offset to each start_pos
             calculated_ticks = calculate_ticks(axis, axis_ticks, tick_length, tickmult)
-            vec_tick_textpos =
-                [start_pos .+ (dist_from_graph .* ts) for start_pos in calculated_ticks[1]]
+            vec_tick_textpos = [start_pos .+ (dist_from_graph .* ts) for start_pos in calculated_ticks[1]]
 
             vec_tick_coords = coords_to_axes.(calculated_ticks...)
             if axis == "x"
