@@ -6,7 +6,7 @@ Please note: this package is currently in _very early development stage_, this R
 ## Installation:
 In the REPL you can paste this code to install the package:
 ```
-using Pkg; pkg"add https://github.com/jacobusmmsmit/TernaryPlots.jl"
+using Pkg; pkg"add TernaryPlots"
 ```
 and then load it with
 ```
