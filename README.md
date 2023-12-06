@@ -21,7 +21,7 @@ using TernaryPlots
 
 ## How to use this package:
 This package provides a function (more precisely: a recipe) to construct ternary plots via converting ternary co-ordinates to cartesian and plotting them:
-```
+```julia
 push!(LOAD_PATH, "src")
 using Plots
 using TernaryPlots
@@ -57,7 +57,7 @@ p = scatter!(a[:,1],a[:,2], legend=false)
 ![](https://github.com/jacobusmmsmit/TernaryPlots.jl/blob/master/outputs/example_plot.png?raw=true)
 
 
-## Work in progress:
+## Work (that was) in progress:
 * Different axis scales (as opposed to just 0 to 1) and ability to update ticks after definition.
 * Performance improvements and code cleanup.
 * Documentation.
