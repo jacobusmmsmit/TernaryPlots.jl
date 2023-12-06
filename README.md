@@ -1,7 +1,8 @@
 # TernaryPlots.jl
 Ternary/simplex plotting recipe/addon for Plots.jl
 
-Please note: this package is currently in _very early development stage_, this README is currently up to date as of 07/08/2021, but may not be in the coming days as problems are fixed and features are added. Please feel free to contact me via email with any questions jacobusmmsmit a gmail d com or open an issue on this repository.
+## Package status
+This package is considered not in active development. I am not currently dedicating any time to adding features or fixing bugs but I will try to answer questions. If you are looking for such functionality may I suggest [GMT.jl](https://docs.juliahub.com/GMT/EoU0j/0.35.0/gallery/ternary/ternary/) or [TernaryDiagrams.jl](https://github.com/stelmo/TernaryDiagrams.jl).
 
 ## Installation:
 In the REPL you can paste this code to install the package:
